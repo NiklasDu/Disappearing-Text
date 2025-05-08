@@ -1,15 +1,8 @@
 # ------------------------ Imports ------------------------- #
-from PyQt6.QtCore import Qt, QSize
+from PyQt6.QtCore import Qt, QSize, QTimer
 from PyQt6.QtWidgets import QMainWindow, QLabel, QVBoxLayout, QWidget, QTextEdit, QPushButton
 from constants import *
-
-# -------------------- Functions ------------------------- #
-
-def restart_timer():
-    pass
-
-def save_text():
-    pass
+from utils.controller import TimerController
 
 # ------------------------ Class ------------------------- #
 
@@ -26,20 +19,20 @@ class MainWindow(QMainWindow):
         self.title_label.setFixedHeight(50)
         self.title_label.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignVCenter)
 
-        self.timer_label = QLabel("5")
+        self.timer_label = QLabel("10")
         self.timer_label.setObjectName("timer")
         self.timer_label.setFixedHeight(50)
         self.timer_label.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignVCenter)
 
         self.user_input = QTextEdit()
-        self.user_input.textChanged.connect(restart_timer)
-        self.user_input.setPlaceholderText("Write a story.\nAfter 5 seconds without typing your text will disappear.")
+        self.user_input.setPlaceholderText("Write a story.\nAfter 10 seconds without typing your text will disappear.")
         self.user_input.setFixedHeight(300)
         self.user_input.setFixedWidth(550)
-        # self.user_input.setAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignTop)
+
+        self.controller = TimerController(self.update_label, self)
+        self.user_input.textChanged.connect(self.controller.restart_timer)
 
         self.save_button = QPushButton("Save Text")
-        self.save_button.clicked.connect(save_text)
         self.save_button.setFixedHeight(50)
         self.save_button.setFixedWidth(200)
 
@@ -118,3 +111,8 @@ class MainWindow(QMainWindow):
             background: none;
         }}
         """)
+
+    # ----------------------- Functions ------------------------- #
+
+    def update_label(self, text):
+        self.timer_label.setText(text)
