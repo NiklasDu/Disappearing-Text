@@ -1,3 +1,5 @@
+import os 
+
 # ---------------------- Constants --------------------- #
 
 BACKGROUND_COLOR       = "#EAF4F4"  # Helles, entsättigtes Mintgrün – frischer Hintergrund
@@ -12,4 +14,6 @@ BORDER_COLOR           = "#D0E6E6"  # Sehr sanftes Grau-Blau – für dezente Um
 SCROLL_BAR_COLOR       = "#45ADA8"  # Gleiche Farbe wie Button – einheitliches Design
 SCROLL_BAR_HOVER_COLOR = "#68C5C0"  # Helleres Türkisgrün – sichtbar, aber harmonisch
  
-FILEPATH = "data/finished_texts.json"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+FILEPATH = os.path.join(BASE_DIR, "data", "finished_texts.json")
+# FILEPATH = "data/finished_texts.json"

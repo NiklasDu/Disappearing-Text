@@ -1,15 +1,15 @@
 from PyQt6.QtCore import QTimer
+from constants import *
+import os
+import json
         
-class TimerController:
-    def __init__(self, update_callback, view):
+class Controller:
+    def __init__(self, view):
         self.view = view
         self.counter = 10
         self.timer = QTimer()
         self.timer.setInterval(1000) 
         self.timer.timeout.connect(self._on_timeout)
-
-        # Callback zum GUI z. B. Label aktualisieren
-        self.update_callback = update_callback
 
     def _on_timeout(self):
         if self.counter == 0:
@@ -17,7 +17,7 @@ class TimerController:
             self.stop_timer()
         else:      
             self.counter -= 1
-            self.update_callback(f"{self.counter}")
+            self.view.timer_label.setText(f"Remaining Seconds: {self.counter}")
 
     def restart_timer(self):
         if self.timer.isActive():
@@ -27,4 +27,29 @@ class TimerController:
 
     def stop_timer(self):
         self.timer.stop()
+
+    def save_text(self):
+        new_text = {
+            "text": self.view.user_input.toPlainText()
+            }
+        
+        data = []
+
+        if os.path.exists(FILEPATH):
+            with open(FILEPATH, "r") as file:
+                try:
+                    data = json.load(file)
+                except json.JSONDecodeError:
+                    pass
+        
+        data.append(new_text)
+
+        with open(FILEPATH, "w") as file:
+            json.dump(data, file, indent=4)
+        
+        self.view.user_input.clear()
+        self.stop_timer()
+
+        
+
         
