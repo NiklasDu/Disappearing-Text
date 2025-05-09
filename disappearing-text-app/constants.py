@@ -16,4 +16,3 @@ SCROLL_BAR_HOVER_COLOR = "#68C5C0"  # Helleres Türkisgrün – sichtbar, aber h
  
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 FILEPATH = os.path.join(BASE_DIR, "data", "finished_texts.json")
-# FILEPATH = "data/finished_texts.json"
