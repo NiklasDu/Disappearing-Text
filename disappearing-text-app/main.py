@@ -34,3 +34,5 @@ app.exec()
 
 # TODO: Timer der nach 5 Sekunden nichts schreiben das Textfeld cleared
 # TODO: Timer anzeigen / schönere Anzeige 
+
+# TODO: besseren FILEPATH angeben, geht ja jetzt

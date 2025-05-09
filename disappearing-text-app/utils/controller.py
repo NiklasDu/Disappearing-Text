@@ -19,6 +19,31 @@ class Controller:
             self.counter -= 1
             self.view.timer_label.setText(f"Remaining Seconds: {self.counter}")
 
+        if self.counter < 2:
+            self.view.user_input.setStyleSheet("""
+                QTextEdit {
+                    color: rgba(46, 61, 73, 30);
+                }                                       
+        """)
+        elif self.counter < 4:
+            self.view.user_input.setStyleSheet("""
+                QTextEdit {
+                    color: rgba(46, 61, 73, 65);
+                }                                       
+        """)
+        elif self.counter < 6:
+            self.view.user_input.setStyleSheet("""
+                QTextEdit {
+                    color: rgba(46, 61, 73, 125);
+                }                                       
+        """)
+        else:
+            self.view.user_input.setStyleSheet("""
+                QTextEdit {
+                    color: rgba(46, 61, 73, 250);
+                }                                       
+        """)
+
     def restart_timer(self):
         if self.timer.isActive():
             self.timer.stop()
