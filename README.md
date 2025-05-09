@@ -17,9 +17,11 @@ Die **Disappearing Text App** ist eine einfache Anwendung, die mit PyQt6 erstell
 
 2. **Abhängigkeiten installieren**: 
     Stelle sicher, dass Python 3.10+ installiert ist. Installiere die benötigten Pakete:
+    ```bash
     pip install -r requirements.txt
 
 3. **App starten**:
+    ```bash
     python disappearing-text-app/main.py
 
 ## Verwendung
